@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import * as yup from "yup";
 import axios from "axios";
+import { Link } from 'react-router-dom'
 import schema from "./SignupFormSchema";
 import FormErrors from "./FormErrors.js";
 
@@ -59,11 +60,15 @@ const StyledForm = styled.form`
     border: none;
     border-radius: 7px;
     font-size: 1.5rem;
-    margin: 1rem 0 0 4rem;
+    margin: 1rem 0 1rem 4rem;
   }
   .submit:disabled {
     background-color: grey;
   }
+  .signin-link {
+    border: 2px solid blue;
+  }
+
 `;
 
 const SignupForm = () => {
@@ -172,6 +177,9 @@ const SignupForm = () => {
           Submit
         </button>
       </StyledForm>
+      <div>
+        <p>Already a member? <Link to='/LoginForm'>Sign in here!</Link></p>
+      </div>
       <FormErrors errors={formErrors} />
     </div>
   );
