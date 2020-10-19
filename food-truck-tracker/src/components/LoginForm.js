@@ -8,23 +8,21 @@ import FormErrors from "./FormErrors.js";
 
 // create empty state of form
 const initialFormValues = {
-    userName = '',
-    email = '',
-    password = '',
-    userType = '',
+    userName: '',
+    password: '',
 };
 
 // create error if forms not filled
 
 const initialFormErrors = {
-    userName = '',
-    email = '',
-    password = '',
-    userType = '',
+    userName: '',
+    password: '',
 };
+
 // API where data lives
 const HOST = "https://food-truck-trackerr.herokuapp.com";
 const REG_URL = "/api/auth/register";
+
 // Style of form
 const StyledForm = styled.form`
   display: flex;
@@ -70,7 +68,7 @@ const StyledForm = styled.form`
   }
 `;
 
-const RegisterForm = () => {
+const LoginForm = () => {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [disabled, setDisabled] = useState(true);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
@@ -97,27 +95,25 @@ const RegisterForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const newUser = {
-      userType: formValues.userType,
+    const registeredUser = {
       userName: formValues.userName,
-      email: formValues.email,
       password: formValues.password,
     };
-    postNewUser(newUser);
+    postRegisteredUser(registeredUser);
     setFormValues(initialFormValues);
   };
 
-  const postNewUser = (newUser) => {
+  const postRegisteredUser = (registeredUser) => {
     axios
       .post(`${HOST}${REG_URL}`)
       .then((res) => {
         // do something
-        console.log(`${newUser.userName} has been posted`);
+        console.log(`${registeredUser.userName} has been signed in`);
       })
       .catch((err) => {
         alert("Network Error.");
       });
-    console.log(newUser);
+
   };
 
   // enable submit button when all entries are valid
@@ -130,18 +126,7 @@ const RegisterForm = () => {
   return (
     <div>
       <StyledForm className='form' onSubmit={onSubmit}>
-        <label className='form-label'>
-          <select
-            className='form-select'
-            onChange={onChange}
-            value={formValues.userType}
-            name='userType'
-          >
-            <option value=''>--Select User Type--</option>
-            <option value='user'>Register as a customer</option>
-            <option value='operator'>Register as a food truck owner</option>
-          </select>
-        </label>
+
         <label className='form-label'>
           Username
           <input
@@ -152,18 +137,9 @@ const RegisterForm = () => {
             onChange={onChange}
           />
         </label>
+
         <label className='form-label'>
-          Email
-          <input
-            className='input-field'
-            type='email'
-            name='email'
-            value={formValues.email}
-            onChange={onChange}
-          />
-        </label>
-        <label className='form-label'>
-          Choose a password
+          Password
           <input
             className='input-field'
             type='password'
@@ -172,6 +148,7 @@ const RegisterForm = () => {
             onChange={onChange}
           />
         </label>
+
         <button className='submit' disabled={disabled}>
           Submit
         </button>
@@ -181,4 +158,4 @@ const RegisterForm = () => {
   );
 };
 
-export default SignupForm;
+export default LoginForm;
