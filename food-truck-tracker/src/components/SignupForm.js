@@ -28,7 +28,8 @@ const StyledForm = styled.form`
   /* justify-content: center; */
   flex-direction: column;
   align-items: center;
-  width: 75%;
+  justify-content: center;
+  width: 40rem;
   margin: auto;
   font-size: 1.5rem;
   .form-label {
@@ -36,21 +37,23 @@ const StyledForm = styled.form`
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    margin-right: 15rem;
+    /* margin-right: 25%; */
+    margin:auto;
   }
   .input-field {
-    width: 24rem;
+    width: 20rem;
     padding: 0.3rem;
     border: 2px solid #ccc;
     border-radius: 4px;
     margin: 1rem;
+    margin-right: 5rem;
     font-size: 1.5rem;
   }
   .form-select {
     font-size: 1.5rem;
     padding: 0.3rem;
-    width: 24.75rem;
-    margin-right: 1rem;
+    width: 20.75rem;
+    margin-right: 5rem;
     margin-bottom: 1rem;
   }
   .submit {
