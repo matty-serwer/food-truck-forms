@@ -5,10 +5,9 @@ import SignupForm from './components/SignupForm'
 function App() {
   return (
     <div className="App">
-      <p>test</p>
+      <h1>Food Truck TrackR</h1>
       {/* <SignupForm /> */}
     </div>
-  );
-}
+  )}
 
 export default App;

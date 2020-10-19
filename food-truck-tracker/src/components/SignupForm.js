@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import * as yup from "yup";
 import axios from "axios";
 import schema from "./SignupFormSchema";
+import FormErrors from "./FormErrors.js";
 
 const initFormValues = {
+  userType: "",
+  userName: "",
+  email: "",
+  password: "",
+};
+
+const initFormErrors = {
   userType: "",
   userName: "",
   email: "",
@@ -60,9 +69,25 @@ const StyledForm = styled.form`
 const SignupForm = () => {
   const [formValues, setFormValues] = useState(initFormValues);
   const [disabled, setDisabled] = useState(true);
+  const [formErrors, setFormErrors] = useState(initFormErrors);
 
   const onChange = (e) => {
     const { name, value } = e.target;
+    yup
+      .reach(schema, name)
+      .validate(value)
+      .then(() => {
+        setFormErrors({
+          ...formErrors,
+          [name]: "",
+        });
+      })
+      .catch((err) => {
+        setFormErrors({
+          ...formErrors,
+          [name]: err.errors[0],
+        });
+      });
     setFormValues({ ...formValues, [name]: value });
   };
 
@@ -134,7 +159,7 @@ const SignupForm = () => {
           />
         </label>
         <label className='form-label'>
-          Choose a pasword
+          Choose a password
           <input
             className='input-field'
             type='password'
@@ -147,6 +172,7 @@ const SignupForm = () => {
           Submit
         </button>
       </StyledForm>
+      <FormErrors errors={formErrors} />
     </div>
   );
 };
