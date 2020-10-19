@@ -7,6 +7,7 @@ function App() {
     <div className="App">
       <h1>Food Truck TrackR</h1>
       {/* <SignupForm /> */}
+      {RegisterForm}
     </div>
   )}
 
