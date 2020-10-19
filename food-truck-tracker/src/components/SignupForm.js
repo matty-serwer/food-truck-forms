@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from 'axios'
 import schema from "./SignupFormSchema";
 
 const initFormValues = {
@@ -7,6 +8,9 @@ const initFormValues = {
   email: "",
   password: "",
 };
+
+const HOST = 'https://dashboard.heroku.com/apps/food-truck-trackerr'
+const REG_URL = '/api/auth/register'
 
 const SignupForm = () => {
   const [formValues, setFormValues] = useState(initFormValues);
@@ -30,7 +34,14 @@ const SignupForm = () => {
   };
 
   const postNewUser = (newUser) => {
-    // axios post goes here
+ axios.post(`${HOST}${REG_URL}`)
+    .then(res => {
+        // do something
+        console.log(`${newUser.userName} has been posted`)
+    })
+    .catch(err => {
+        alert('Network Error.')
+    })
     console.log(newUser);
   };
 
