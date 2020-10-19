@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios'
+import styled from "styled-components";
+import axios from "axios";
 import schema from "./SignupFormSchema";
 
 const initFormValues = {
@@ -9,8 +10,52 @@ const initFormValues = {
   password: "",
 };
 
-const HOST = 'https://dashboard.heroku.com/apps/food-truck-trackerr'
-const REG_URL = '/api/auth/register'
+const HOST = "https://food-truck-trackerr.herokuapp.com";
+const REG_URL = "/api/auth/register";
+
+const StyledForm = styled.form`
+  display: flex;
+  /* justify-content: center; */
+  flex-direction: column;
+  align-items: center;
+  width: 75%;
+  margin: auto;
+  font-size: 1.5rem;
+  .form-label {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 15rem;
+  }
+  .input-field {
+    width: 24rem;
+    padding: 0.3rem;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    margin: 1rem;
+    font-size: 1.5rem;
+  }
+  .form-select {
+    font-size: 1.5rem;
+    padding: 0.3rem;
+    width: 24.75rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+  }
+  .submit {
+    background-color: #4caf50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 7px;
+    font-size: 1.5rem;
+    margin: 1rem 0 0 4rem;
+  }
+  .submit:disabled {
+    background-color: grey;
+  }
+`;
 
 const SignupForm = () => {
   const [formValues, setFormValues] = useState(initFormValues);
@@ -34,14 +79,15 @@ const SignupForm = () => {
   };
 
   const postNewUser = (newUser) => {
- axios.post(`${HOST}${REG_URL}`)
-    .then(res => {
+    axios
+      .post(`${HOST}${REG_URL}`)
+      .then((res) => {
         // do something
-        console.log(`${newUser.userName} has been posted`)
-    })
-    .catch(err => {
-        alert('Network Error.')
-    })
+        console.log(`${newUser.userName} has been posted`);
+      })
+      .catch((err) => {
+        alert("Network Error.");
+      });
     console.log(newUser);
   };
 
@@ -54,9 +100,10 @@ const SignupForm = () => {
 
   return (
     <div>
-      <form className='form' onSubmit={onSubmit}>
+      <StyledForm className='form' onSubmit={onSubmit}>
         <label className='form-label'>
           <select
+            className='form-select'
             onChange={onChange}
             value={formValues.userType}
             name='userType'
@@ -66,27 +113,30 @@ const SignupForm = () => {
             <option value='operator'>I have a food truck.</option>
           </select>
         </label>
-        <label>
+        <label className='form-label'>
           Username
           <input
+            className='input-field'
             type='text'
             name='userName'
             value={formValues.userName}
             onChange={onChange}
           />
         </label>
-        <label>
+        <label className='form-label'>
           Email
           <input
+            className='input-field'
             type='email'
             name='email'
             value={formValues.email}
             onChange={onChange}
           />
         </label>
-        <label>
+        <label className='form-label'>
           Choose a pasword
           <input
+            className='input-field'
             type='password'
             name='password'
             value={formValues.password}
@@ -96,7 +146,7 @@ const SignupForm = () => {
         <button className='submit' disabled={disabled}>
           Submit
         </button>
-      </form>
+      </StyledForm>
     </div>
   );
 };
