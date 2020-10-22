@@ -152,6 +152,12 @@ const LoginForm = () => {
         <button className='submit' disabled={disabled}>
           Submit
         </button>
+        <br/>
+        <h2>Not registered as a customer or owner?</h2>
+
+        <button className='submit'>
+          register
+        </button>
       </StyledForm>
       <FormErrors errors={formErrors} />
     </div>
