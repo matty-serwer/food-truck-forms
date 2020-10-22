@@ -5,6 +5,7 @@ import * as yup from "yup";
 import axios from "axios";
 import schema from "./RegisterFormSchema";
 import FormErrors from "./FormErrors.js";
+import { Link } from 'react-router-dom';
 
 // create empty state of form
 const initialFormValues = {
@@ -152,12 +153,16 @@ const LoginForm = () => {
         <button className='submit' disabled={disabled}>
           Submit
         </button>
+
         <br/>
-        <h2>Not registered as a customer or owner?</h2>
+
+        <h2>Not yet registered?<Link to='/SignupForm'>
+
+        <br/>
 
         <button className='submit'>
-          register
-        </button>
+        register
+        </button></Link></h2>
       </StyledForm>
       <FormErrors errors={formErrors} />
     </div>
