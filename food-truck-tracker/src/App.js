@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <h1>Food Truck TrackR</h1>
-      {/* <SignupForm /> */}
+      <SignupForm />
     </div>
   )}
 
