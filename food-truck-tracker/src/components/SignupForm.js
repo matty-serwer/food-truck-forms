@@ -31,7 +31,10 @@ const StyledForm = styled.form`
   justify-content: center;
   width: 40rem;
   margin: auto;
+  padding: 4rem 0 3rem 1rem;
+  border-radius: 20px;
   font-size: 1.5rem;
+  background-color: rgb(242, 200, 174, .3);
   .form-label {
     width: 100%;
     display: flex;
@@ -63,15 +66,11 @@ const StyledForm = styled.form`
     border: none;
     border-radius: 7px;
     font-size: 1.5rem;
-    margin: 1rem 0 1rem 4rem;
+    margin: 1rem 0 .5rem 4rem;
   }
   .submit:disabled {
     background-color: grey;
   }
-  .signin-link {
-    border: 2px solid blue;
-  }
-
 `;
 
 const SignupForm = () => {
@@ -133,6 +132,7 @@ const SignupForm = () => {
 
   return (
     <div>
+      <h1>Sign Up!</h1>
       <StyledForm className='form' onSubmit={onSubmit}>
         <label className='form-label'>
           <select
