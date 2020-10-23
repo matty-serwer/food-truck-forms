@@ -1,5 +1,6 @@
 // Import all needed outside components
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom'
 import styled from "styled-components";
 import * as yup from "yup";
 import axios from "axios";
@@ -125,6 +126,7 @@ const LoginForm = () => {
 
   return (
     <div>
+      <h1>Food Truck TrackR Login</h1>
       <StyledForm className='form' onSubmit={onSubmit}>
 
         <label className='form-label'>
@@ -154,6 +156,9 @@ const LoginForm = () => {
         </button>
       </StyledForm>
       <FormErrors errors={formErrors} />
+      <div>
+        <p>Not a member? <Link to='/'>Sign up here!</Link></p>
+      </div>
     </div>
   );
 };

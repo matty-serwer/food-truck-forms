@@ -132,6 +132,7 @@ const SignupForm = () => {
 
   return (
     <div>
+      <h1>Sign Up!</h1>
       <StyledForm className='form' onSubmit={onSubmit}>
         <label className='form-label'>
           <select
